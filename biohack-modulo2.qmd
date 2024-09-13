@@ -701,6 +701,30 @@ tesis
 
 # Antes de terminar
 
+## Guarda la huella digital de tu trabajo
+
+::: incremental
+
+-   Es común que con nuevas versiones de paquetes, algunas funciones son dadas de baja.
+
+-   Los paquetes pueden también ser dados de bajo del CRAN.
+
+-   Esto puede producir que de aquí a un par de años un código tuyo simplemente no funcione.
+
+-   Para facilitar el trabajo detectivesco de encontrar las versiones exactas que usaste para tu análisis, al terminar un proyecto, guarda la información de la sesión de R.
+
+:::
+
+. . . 
+
+```{r}
+#| eval: false
+#| code-line-numbers: false
+#| echo: true
+writeLines(capture.output(sessionInfo()), "sessionInfo.txt")
+```
+
+
 ## Conflictos {.smaller}
 
 ::: incremental

@@ -1011,6 +1011,22 @@
 <h1>Antes de terminar</h1>
 
 </section>
+<section id="guarda-la-huella-digital-de-tu-trabajo" class="slide level2">
+<h2>Guarda la huella digital de tu trabajo</h2>
+<div>
+<ul>
+<li class="fragment"><p>Es común que con nuevas versiones de paquetes, algunas funciones son dadas de baja.</p></li>
+<li class="fragment"><p>Los paquetes pueden también ser dados de bajo del CRAN.</p></li>
+<li class="fragment"><p>Esto puede producir que de aquí a un par de años un código tuyo simplemente no funcione.</p></li>
+<li class="fragment"><p>Para facilitar el trabajo detectivesco de encontrar las versiones exactas que usaste para tu análisis, al terminar un proyecto, guarda la información de la sesión de R.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>()), <span class="st">"sessionInfo.txt"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
 <section id="conflictos" class="slide level2 smaller">
 <h2>Conflictos</h2>
 <div>
@@ -1021,17 +1037,17 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(dplyr)</span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>Attaching package<span class="sc">:</span> ‘dplyr’</span>
-<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>The following objects are masked from ‘package<span class="sc">:</span>stats’<span class="sc">:</span></span>
-<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a aria-hidden="true" tabindex="-1"></a>    filter, lag</span>
-<span id="cb16-8"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a aria-hidden="true" tabindex="-1"></a>The following objects are masked from ‘package<span class="sc">:</span>base’<span class="sc">:</span></span>
-<span id="cb16-10"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a aria-hidden="true" tabindex="-1"></a>    intersect, setdiff, setequal, union</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(dplyr)</span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>Attaching package<span class="sc">:</span> ‘dplyr’</span>
+<span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a>The following objects are masked from ‘package<span class="sc">:</span>stats’<span class="sc">:</span></span>
+<span id="cb17-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a aria-hidden="true" tabindex="-1"></a>    filter, lag</span>
+<span id="cb17-8"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a aria-hidden="true" tabindex="-1"></a>The following objects are masked from ‘package<span class="sc">:</span>base’<span class="sc">:</span></span>
+<span id="cb17-10"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a aria-hidden="true" tabindex="-1"></a>    intersect, setdiff, setequal, union</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -1039,7 +1055,7 @@
 <li>Si vas a usar las funciones de un paquete pocas veces, es recomendable llamar a las funciones de manera directa sin cargar el paquete en su totalidad. Esto se consigue usando el comando <code>::</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1053,9 +1069,9 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="cf">function</span>(vector){</span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">print</span>(vector))</span>
-<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="cf">function</span>(vector){</span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">print</span>(vector))</span>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">

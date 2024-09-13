@@ -175,6 +175,13 @@
     "text": "Organizando aún más\n\n\n\ntesis\n│   tesis.Rproj\n│   00_librerias_funciones.R\n│   01_carga_limpieza_datos.R\n│   02_analisis_exploratorio.R\n│   03_estadisticos_descriptivos.R\n│   04_estadisticos_inferenciales.R\n│   05_tablas_figuras.R\n│   datos_tesis.xlsx\n│   dispersion_a.png\n│   dispersion_b.png\n│   dispersion_c.png\n│   tabla_anova_a.docx\n│   tabla_anova_b.docx\n│   tabla_anova_c.docx\n\n\n\ntesis\n│   tesis.Rproj\n└───datos\n│   │   datos_tesis.xlsx\n└───figuras\n│   │   dispersion_a.png\n│   │   dispersion_b.png\n│   │   dispersion_c.png\n└───R\n│   │   00_librerias_funciones.R\n│   │   01_carga_limpieza_datos.R\n│   │   02_analisis_exploratorio.R\n│   │   03_estadisticos_descriptivos.R\n│   │   04_estadisticos_inferenciales.R\n│   │   05_tablas_figuras.R"
   },
   {
+    "objectID": "biohack-modulo2.html#guarda-la-huella-digital-de-tu-trabajo",
+    "href": "biohack-modulo2.html#guarda-la-huella-digital-de-tu-trabajo",
+    "title": "biohack-modulo2",
+    "section": "Guarda la huella digital de tu trabajo",
+    "text": "Guarda la huella digital de tu trabajo\n\n\nEs común que con nuevas versiones de paquetes, algunas funciones son dadas de baja.\nLos paquetes pueden también ser dados de bajo del CRAN.\nEsto puede producir que de aquí a un par de años un código tuyo simplemente no funcione.\nPara facilitar el trabajo detectivesco de encontrar las versiones exactas que usaste para tu análisis, al terminar un proyecto, guarda la información de la sesión de R.\n\n\n\n\nwriteLines(capture.output(sessionInfo()), \"sessionInfo.txt\")"
+  },
+  {
     "objectID": "biohack-modulo2.html#conflictos",
     "href": "biohack-modulo2.html#conflictos",
     "title": "biohack-modulo2",
