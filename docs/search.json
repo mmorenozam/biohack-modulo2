@@ -1,0 +1,198 @@
+[
+  {
+    "objectID": "biohack-modulo2.html#section",
+    "href": "biohack-modulo2.html#section",
+    "title": "biohack-modulo2",
+    "section": "",
+    "text": "Módulo 2: Proyectos en R y buenas prácticas de programación\n\nMauricio Moreno, PhD"
+  },
+  {
+    "objectID": "biohack-modulo2.html#introducción",
+    "href": "biohack-modulo2.html#introducción",
+    "title": "biohack-modulo2",
+    "section": "Introducción",
+    "text": "Introducción\n\n\n\n\n¿Cómo comenzaste tu aprendizaje de R?\n\nQuizá este curso sea tu primera experiencia con R\nPara otros (incluyéndome), fue parte de algún curso de estadística\nO te viste forzado a aprenderlo por un trabajo (en la marcha incluso)\n\nIndependientemente del estilo de programación que forjes, a la larga es común que tus scripts:\n\nTerminen conteniendo miles de líneas\nEstén por todos lados en tu computador\nQue te sea difícil compartirlos, porque apenas si tú los entiendes"
+  },
+  {
+    "objectID": "biohack-modulo2.html#por-qué-evitar-esto",
+    "href": "biohack-modulo2.html#por-qué-evitar-esto",
+    "title": "biohack-modulo2",
+    "section": "¿Por qué evitar esto?",
+    "text": "¿Por qué evitar esto?\n\n\nEscribir buen código nos ayuda a nosotros mismos (en el futuro)\nYa sea en el ambiente laboral o académico:\n\nAl compartirlo, se puede evitar duplicación de esfuerzos\nNos permite reproducir de manera más fácil los resultados obtenidos\nFacilita la corrección de errores que hayamos podido cometer"
+  },
+  {
+    "objectID": "biohack-modulo2.html#añadiendo-comentarios",
+    "href": "biohack-modulo2.html#añadiendo-comentarios",
+    "title": "biohack-modulo2",
+    "section": "Añadiendo comentarios",
+    "text": "Añadiendo comentarios\n\n\nPodemos añadir comentarios usando #\nSe aconseja que un comentario no explique que es lo que hace el código,\nSino, por qué lo hiciste\n\n\n\n\n\n\nlibrary(palmerpenguins) \n\npenguins %&gt;%\n  group_by(species) %&gt;%\n  filter(!is.na(sex)) %&gt;% # filtrar NAs\n  summarise(\n    media_body = mean(body_mass_g, na.rm = T), # calc. media peso\n    sd_body = sd(body_mass_g, na.rm = T), # cal. desv. est. peso\n  )\n\n\n\n# Remueve los valores perdidos de la \n# variable sex y calcula la media aritmetica\n# y desviacion estandar de body_mass_g\n# usando la tabla penguins de la libreria\n# palmerpenguins\n\nlibrary(palmerpenguins)\n\npenguins %&gt;%\n  group_by(species) %&gt;%\n  filter(!is.na(sex)) %&gt;% \n  summarise(\n    media_body = mean(body_mass_g, na.rm = T), \n    sd_body = sd(body_mass_g, na.rm = T), \n  )\n\n\n\n\nNotarás que la forma de la derecha parece un poco tediosa de redactar para cada paso que des en tu análisis. Sin embargo, piensa en ti mismo leyendo tu código en unos cuantos meses en el futuro 😉"
+  },
+  {
+    "objectID": "biohack-modulo2.html#secciones-y-subsecciones",
+    "href": "biohack-modulo2.html#secciones-y-subsecciones",
+    "title": "biohack-modulo2",
+    "section": "Secciones y subsecciones",
+    "text": "Secciones y subsecciones\n\n\nUna ventaja de RStudio es que podemos añadir secciones y subsecciones a nuestro código\n\n# Cargando datos ------------------\n\n## Analisis de varianza -----------\n\n## Creacion de graficas -----------"
+  },
+  {
+    "objectID": "biohack-modulo2.html#código-legible",
+    "href": "biohack-modulo2.html#código-legible",
+    "title": "biohack-modulo2",
+    "section": "Código legible",
+    "text": "Código legible\nEsta línea de código corre sin errores, pero…\n\npenguins%&gt;%filter(!is.na(sex))%&gt;%group_by(species, island)%&gt;%summarise(obs=n(body_mass_g),media=mean(body_mass_g),desv.std=sd(body_mass_g))\n\n\n¿No es más facil leer esto?\n\npenguins %&gt;% \n  filter(!is.na(sex)) %&gt;% \n  group_by(species, island) %&gt;% \n  summarise(obs = n(body_mass_g), \n            media = mean(body_mass_g), \n            desv.std = sd(body_mass_g))"
+  },
+  {
+    "objectID": "biohack-modulo2.html#linting",
+    "href": "biohack-modulo2.html#linting",
+    "title": "biohack-modulo2",
+    "section": "Linting",
+    "text": "Linting\n\n\nLinting, desde el punto de vista de la programación, es una expresión en Inglés que se puede traducir al Español como la práctica de estilizar código (linting en Español se traduce literalmente a pelusa ¯\\(ツ)/¯)\nCómo estilicemos nuestro código es algo ya personal, sin embargo existen varias “convenciones” que nos pueden guiar a tener códigos más legibles, algunas de ellas:\n\nDeja espacios vacíos antes y despues de =, &lt;-, -, +, %&gt;% etc\nUn espacio vacío después de ,\nDa cortes de línea (enter) donde sea necesario para que las líneas de código no sean muy largas\nDeja un espacio vacío entre líneas o conjuntos de líneas que cumplen con una función específica.\n\nEstas y otras convenciones las puedes llevar a cabo a mano, o en R, puedes ayudarte de las librerías {lintr} y {styler}."
+  },
+  {
+    "objectID": "biohack-modulo2.html#lintr",
+    "href": "biohack-modulo2.html#lintr",
+    "title": "biohack-modulo2",
+    "section": "{lintr}",
+    "text": "{lintr}\n\n\nComenzaremos instalando {lintr}: install.packages(\"lintr\")\nEn nuevo script en tu sesión de R, copia el siguiente código y guárdalo bajo el nombre “ejemplo_lint.R”\n\n\n\n\nlibrary(palmerpenguins)\ntabla_resumen&lt;-penguins%&gt;%filter(!is.na(sex))%&gt;%group_by(species, island)%&gt;%summarise(obs=n(body_mass_g),media=mean(body_mass_g),desv.std=sd(body_mass_g))\n\n\n\nSobre la pestaña con el nombre de tu script, haz click derecho y copia el path\n\n\n\n\n\n\n\n\n\n\n\nEn la consola de R, carga la librería {lintr}, y ejecuta el comando lint pegando entre comillas el path que acabas de copiar, en mi caso:\n\n\n\n\n\nlibrary(lintr)\nlint(\"C:/Users/mmore/Documents/cursos_2024/biohack/biohack-modulo2/ejemplo_lint.R\")"
+  },
+  {
+    "objectID": "biohack-modulo2.html#lintr-1",
+    "href": "biohack-modulo2.html#lintr-1",
+    "title": "biohack-modulo2",
+    "section": "{lintr}",
+    "text": "{lintr}\n\nAl ejecutar esas líneas, te aparecerá una nueva pestaña junto a tu consola llamada Markers. Ahí, estarán las correcciones de estilo sugeridas por {lintr}"
+  },
+  {
+    "objectID": "biohack-modulo2.html#styler",
+    "href": "biohack-modulo2.html#styler",
+    "title": "biohack-modulo2",
+    "section": "{styler}",
+    "text": "{styler}\n\nComo viste, {lintr} solamente te sugiere los cambios a realizar para mejorar el estilo de tu código.\nAl contrario, {styler} lleva a cabo la mayoría de las sugerencias de {lintr} por ti\n\n\n\nInstalamos {styler}: install.packages(\"styler\")\nEn la consola, ejecutamos algo similar a lo que hicimos con {lintr}\n\n\n\n\nlibrary(styler)\nstyle_file(\"C:/Users/mmore/Documents/cursos_2024/biohack/biohack-modulo2/ejemplo_lint.R\")\n\n\n\n\nAhora tu script debe estar estilizado!"
+  },
+  {
+    "objectID": "biohack-modulo2.html#modularizando-tus-scripts",
+    "href": "biohack-modulo2.html#modularizando-tus-scripts",
+    "title": "biohack-modulo2",
+    "section": "Modularizando tus scripts",
+    "text": "Modularizando tus scripts\nImagina que tu trabajo puede comenzar con una carpeta cuya estructura se ve más o menos así:\n\ntesis\n│   analisis datos.R\n│   datos tesis.xlsx\n\n\nEsto está bien en un principio, pero\n\n\nA medida que agregues más análisis en tu script, puedes fácilmente terminar con miles de líneas de código.\nEn este caso, ya ni las secciones y subsecciones ayudan mucho para navegarlo.\nEn tu script, seguramente llevas a cabo múltiples cosas (cargar y limpiar datos, crear modelos, generar figuras…)\nPuedes entonces pensar en modularizarlo!\n\n\n\n\nEl modularizar un script consiste simplemente en dividirlo en múltiples scripts de menor tamaño basándote en las tareas que realizas en tu código."
+  },
+  {
+    "objectID": "biohack-modulo2.html#modularización",
+    "href": "biohack-modulo2.html#modularización",
+    "title": "biohack-modulo2",
+    "section": "Modularización",
+    "text": "Modularización\nEste bien podría ser el flujo de trabajo más simple que podriamos imaginarnos:\n\n\n\n\n\nflowchart LR\n    A[Cargar librerías] --&gt; B[Cargar datos]\n    B --&gt; C[Limpiar datos]\n    C --&gt; D[Análisis Exploratorio]\n    D --&gt; E[Estadísticos Descriptivos]\n    E --&gt; F[Modelo Estadístico]\n    F --&gt; G[Resultados Finales]\n\n\n\n\n\n\n\nSin embargo, para trabajos sencillos, un flujo tan detallado no hace falta (excepto si tu código va a ser usado para producción). Entonces, también podríamos tener:\n\n\n\n\n\nflowchart LR\n    A[Cargar librerías&lt;br&gt;Cargar datos&lt;br&gt;Limpiar datos] --&gt; B[Análisis Exploratorio]\n    B --&gt; C[Estadísticos Descriptivos]\n    C --&gt; D[Modelo Estadístico]\n    D --&gt; E[Resultados Finales]\n\n\n\n\n\n\n\n\nEn resumen, al modularizar tu código, las decisiones que tomes dependerán por supuesto de las necesidades de tu problema y tu estilo de programación."
+  },
+  {
+    "objectID": "biohack-modulo2.html#nombrando-tus-módulos",
+    "href": "biohack-modulo2.html#nombrando-tus-módulos",
+    "title": "biohack-modulo2",
+    "section": "Nombrando tus módulos",
+    "text": "Nombrando tus módulos\n\n\nUna opción:\n\ntesis\n│   carga limpieza datos.R\n│   librerias y funciones.R\n│   estadisticos descriptivos.R\n│   estadisticos inferenciales.R\n│   analisis exploratorio.R\n│   tablas y figuras.R\n│   datos tesis.xlsx\n\n\nUna mejor opción:\n\ntesis\n│   00_librerias_funciones.R\n│   01_carga_limpieza_datos.R\n│   02_analisis_exploratorio.R\n│   03_estadisticos_descriptivos.R\n│   04_estadisticos_inferenciales.R\n│   05_tablas_figuras.R\n│   datos_tesis.xlsx\n\n\n\n\n\n\n\n\n\nTips para nombrar tus archivos\n\n\n\nEmpieza con un prefijo numérico de dos dígitos\nDales nombres descriptivos\nEvita espacios vacíos (puedes usar - ó _)\nEvita caractéres especiales (como tildes, la letra ñ, etc) o innecesarios al contexto (como la letra “y”)"
+  },
+  {
+    "objectID": "biohack-modulo2.html#y-ahora",
+    "href": "biohack-modulo2.html#y-ahora",
+    "title": "biohack-modulo2",
+    "section": "Y, ¿ahora?",
+    "text": "Y, ¿ahora?\n\nTenemos la idea básica de modularizar, pero ahora, ¿cómo hacemos para que R sepa cómo usar nuestros módulos?"
+  },
+  {
+    "objectID": "biohack-modulo2.html#introducción-1",
+    "href": "biohack-modulo2.html#introducción-1",
+    "title": "biohack-modulo2",
+    "section": "Introducción",
+    "text": "Introducción\n\n\nBajo la lógica de un solo script, es necesario el especificar en R cual es nuestro directorio de trabajo.\nEsto se lo consigue usando el comando setwd que funciona de una manera similar a estar copiando el path como vimos para {lintr} y {styler}.\nPero al modularizar, esto significaría el cambiar constantemente el path conforme avancemos y cambiemos cosas en nuestro trabajo en cada uno de los módulos que creemos.\nAfortunadamente, RStudio nos ofrece la funcionalidad de trabajar bajo la modalidad de Proyectos que ofrece entre otras ventajas:\n\nNo especificar repetitivamente el directorio de trabajo\nOrganizar de manera más flexible la estructura de nuestro proyecto\nPoder incluso cambiar la ubicación del proyecto en nuestro computador, sin necesidad de que se comprometa su funcionamiento."
+  },
+  {
+    "objectID": "biohack-modulo2.html#creando-un-proyecto",
+    "href": "biohack-modulo2.html#creando-un-proyecto",
+    "title": "biohack-modulo2",
+    "section": "Creando un proyecto",
+    "text": "Creando un proyecto\n\n\n\n\n\n\n\n\n\nClick en File (Archivo)\nClick en New Project… (Nuevo proyecto…)"
+  },
+  {
+    "objectID": "biohack-modulo2.html#creando-un-proyecto-1",
+    "href": "biohack-modulo2.html#creando-un-proyecto-1",
+    "title": "biohack-modulo2",
+    "section": "Creando un proyecto",
+    "text": "Creando un proyecto\n\n\n\n\n\n\n\n\n\nClick en File (Archivo)\nClick en New Project… (Nuevo proyecto…)\nClick en New Directory (Nuevo Directorio)"
+  },
+  {
+    "objectID": "biohack-modulo2.html#creando-un-proyecto-2",
+    "href": "biohack-modulo2.html#creando-un-proyecto-2",
+    "title": "biohack-modulo2",
+    "section": "Creando un proyecto",
+    "text": "Creando un proyecto\n\n\n\n\n\n\n\n\n\nClick en File (Archivo)\nClick en New Project… (Nuevo proyecto…)\nClick en New Directory (Nuevo directorio)\nClick en New Project (Nuevo proyecto)"
+  },
+  {
+    "objectID": "biohack-modulo2.html#creando-un-proyecto-3",
+    "href": "biohack-modulo2.html#creando-un-proyecto-3",
+    "title": "biohack-modulo2",
+    "section": "Creando un proyecto",
+    "text": "Creando un proyecto\n\n\n\n\n\n\n\n\n\nClick en File (Archivo)\nClick en New Project… (Nuevo proyecto…)\nClick en New Directory (Nuevo directorio)\nClick en New Project (Nuevo proyecto)\nEscoger la ubicación donde crearemos el nuevo proyecto y el nombre del directorio."
+  },
+  {
+    "objectID": "biohack-modulo2.html#creando-un-proyecto-4",
+    "href": "biohack-modulo2.html#creando-un-proyecto-4",
+    "title": "biohack-modulo2",
+    "section": "Creando un proyecto",
+    "text": "Creando un proyecto"
+  },
+  {
+    "objectID": "biohack-modulo2.html#creando-un-proyecto-5",
+    "href": "biohack-modulo2.html#creando-un-proyecto-5",
+    "title": "biohack-modulo2",
+    "section": "Creando un proyecto",
+    "text": "Creando un proyecto\n\n\n\n\n\n\n\n\n\nEn la pestaña de Files (Archivos) es donde podremos poner en práctica la organización de nuestro proyecto."
+  },
+  {
+    "objectID": "biohack-modulo2.html#conectando-nuestros-módulos",
+    "href": "biohack-modulo2.html#conectando-nuestros-módulos",
+    "title": "biohack-modulo2",
+    "section": "Conectando nuestros módulos",
+    "text": "Conectando nuestros módulos\nAhora que hemos creado nuestro primer proyecto, vamos por un ejemplo básico de cómo conectar los módulos.\n\n\nSupongamos que vamos a hacer un análisis de los datos de los Pingüinos de Palmer. Sin adentrarme mucho en el código, crea un script de nombre “00_librerias_funciones.R” con el siguiente contenido:\n\n\nif (!require(\"rlang\")) install.packages(\"rlang\")\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(rlang)\n\n# Funcion para plotear el largo vs la profundidad del pico por sexo\n# Añade una linea de regresión a los puntos\n# Argumentos: especie = especie de pinguino; isla = isla donde vive la especie\n\nplt_function &lt;- function(especie, isla){\n  penguins %&gt;%\n    filter(species == parse_expr(especie) & island == parse_expr(isla)) %&gt;%\n    filter(!is.na(sex)) %&gt;%\n    ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +\n    geom_smooth(method = \"lm\", formula = y ~ x) + \n    geom_point() +\n    facet_wrap(~ sex, scales = \"free_x\") +\n    theme_bw()+\n    labs(title = \"Largo de pico vs. profundidad de pico\",\n         subtitle = paste0(\"Especie: \", especie, \". Isla: \", isla),\n         x = \"largo (mm)\", y = \"profundidad (mm)\")\n}"
+  },
+  {
+    "objectID": "biohack-modulo2.html#conectando-nuestros-módulos-1",
+    "href": "biohack-modulo2.html#conectando-nuestros-módulos-1",
+    "title": "biohack-modulo2",
+    "section": "Conectando nuestros módulos",
+    "text": "Conectando nuestros módulos\n\nAhora, en un script aparte de nombre “01_figuras.R”, llamaremos al script que creamos anteriormente usando el comando source\n\n\nsource(\"00_librerias_funciones.R\")\n\n# Creando plots --------------------------\n\n## Adelie --------------------------------\n\n### Torgersen ----------------------------\n\nplt_function(\"Adelie\", \"Torgersen\")\n\n### Biscoe -------------------------------\n\nplt_function(\"Adelie\", \"Biscoe\")\n\n### Dream --------------------------------\n\nplt_function(\"Adelie\", \"Dream\")\n\n\n\nEjecuta el script “01_figuras.R”"
+  },
+  {
+    "objectID": "biohack-modulo2.html#la-magia-de-source",
+    "href": "biohack-modulo2.html#la-magia-de-source",
+    "title": "biohack-modulo2",
+    "section": "La magia de source",
+    "text": "La magia de source\n\n\nsource es el conector que necesitamos para relacionar nuestros scripts modularizados.\nGeneralmente el script con prefijo “00” es el que nos ayudará a contener pasos fundamentales. En este ejemplo, he puesto una función sencilla para automatizar un proceso.\n\nEsto es común en la industria, pero para fines académicos y/o de uso a menor escala no es tan necesario. Por esa razón no cubrimos en el curso la creación de funciones.\nEn los casos más sencillos, recomiendo el usar el prefijo “00” para el script donde lleves a cabo limpieza de datos.\n\nAsí, si cambias algo en tus tablas originales de datos, y si has interconectado correctamente tus módulos, puedes hacer que esos cambios en los datos sean tomados en cuenta en todos tus productos de análisis.\n\n\n\n\n\n\n\n\n\nCuando la organización de tu flujo de trabajo es muy complicada, source puede llegar a fallar. En ese caso, te recomiendo darle un vistazo al paquete {here}"
+  },
+  {
+    "objectID": "biohack-modulo2.html#organizando-aún-más",
+    "href": "biohack-modulo2.html#organizando-aún-más",
+    "title": "biohack-modulo2",
+    "section": "Organizando aún más",
+    "text": "Organizando aún más\n\n\n\ntesis\n│   tesis.Rproj\n│   00_librerias_funciones.R\n│   01_carga_limpieza_datos.R\n│   02_analisis_exploratorio.R\n│   03_estadisticos_descriptivos.R\n│   04_estadisticos_inferenciales.R\n│   05_tablas_figuras.R\n│   datos_tesis.xlsx\n│   dispersion_a.png\n│   dispersion_b.png\n│   dispersion_c.png\n│   tabla_anova_a.docx\n│   tabla_anova_b.docx\n│   tabla_anova_c.docx\n\n\n\ntesis\n│   tesis.Rproj\n└───datos\n│   │   datos_tesis.xlsx\n└───figuras\n│   │   dispersion_a.png\n│   │   dispersion_b.png\n│   │   dispersion_c.png\n└───R\n│   │   00_librerias_funciones.R\n│   │   01_carga_limpieza_datos.R\n│   │   02_analisis_exploratorio.R\n│   │   03_estadisticos_descriptivos.R\n│   │   04_estadisticos_inferenciales.R\n│   │   05_tablas_figuras.R"
+  },
+  {
+    "objectID": "biohack-modulo2.html#conflictos",
+    "href": "biohack-modulo2.html#conflictos",
+    "title": "biohack-modulo2",
+    "section": "Conflictos",
+    "text": "Conflictos\n\n\nHabiendo miles de paquetes, es común que a veces algunos utilicen los mismos nombres para sus funciones.\nCuando esto ocurre, R te lo dejará saber al cargar un paquete con un mensaje similar a esto\n\n\n\n\n&gt; library(dplyr)\n\nAttaching package: ‘dplyr’\n\nThe following objects are masked from ‘package:stats’:\n\n    filter, lag\n\nThe following objects are masked from ‘package:base’:\n\n    intersect, setdiff, setequal, union\n\n\n\n\nSi vas a usar las funciones de un paquete pocas veces, es recomendable llamar a las funciones de manera directa sin cargar el paquete en su totalidad. Esto se consigue usando el comando ::\n\n\ntidyr::pivot_longer()"
+  },
+  {
+    "objectID": "biohack-modulo2.html#r-es-un-lenguaje-extraño",
+    "href": "biohack-modulo2.html#r-es-un-lenguaje-extraño",
+    "title": "biohack-modulo2",
+    "section": "R es un lenguaje extraño",
+    "text": "R es un lenguaje extraño\n\n\n¿Recuerdas que algún momento mencioné que hay que evitar nombrar nuestros objetos de R con nombres de funciones de otros paquetes?\nHace poco conocí de este curioso ejemplo, si creamos una función del mismo nombre que mean, que haga cualquier otra cosa excepto calcular la media aritmética\n\n\n\n\nmean &lt;- function(vector){\n  return(print(vector))\n}\n\n\n\n\nEnmascara en tu sesión a la función base verdadera mean. Esto no sucede en otros lenguajes de programación."
+  },
+  {
+    "objectID": "biohack-modulo2.html#section-1",
+    "href": "biohack-modulo2.html#section-1",
+    "title": "biohack-modulo2",
+    "section": "",
+    "text": "Fin del módulo 2\n\n\n\n\n\n\n\nCréditos\n\n\nEste módulo está basado en una buena extensión en la charla Stop making spaghetti (code) de la Prof. Nicola Rennie, PhD\nFoto portada por Pat Whelen en Unsplash\nFoto final por PARK HONG KYU en Unsplash"
+  }
+]
