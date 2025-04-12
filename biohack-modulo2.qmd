@@ -707,7 +707,7 @@ tesis
 
 -   Es común que con nuevas versiones de paquetes, algunas funciones son dadas de baja.
 
--   Los paquetes pueden también ser dados de bajo del CRAN.
+-   Los paquetes pueden también ser dados de baja del CRAN.
 
 -   Esto puede producir que de aquí a un par de años un código tuyo simplemente no funcione.
 
@@ -770,7 +770,7 @@ tidyr::pivot_longer()
 :::incremental
 -   ¿Recuerdas que algún momento mencioné que hay que evitar nombrar nuestros objetos de R con nombres de funciones de otros paquetes?
 
--   Hace poco conocí de este curioso ejemplo, si creamos una función del mismo nombre que `mean`, que haga cualquier otra cosa excepto calcular la media aritmética
+-   Si creamos una función del mismo nombre que `mean`, que haga cualquier otra cosa excepto calcular la media aritmética
 
 :::
 
@@ -787,7 +787,7 @@ mean <- function(vector){
 
 . . .
 
--   Enmascara en tu sesión a la función base verdadera `mean`. Esto no sucede en otros lenguajes de programación.
+-   Enmascara en tu sesión a la función base `mean` verdadera. Esto no sucede en otros lenguajes de programación.
 
 ## {}
 

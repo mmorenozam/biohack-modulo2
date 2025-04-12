@@ -179,7 +179,7 @@
     "href": "biohack-modulo2.html#guarda-la-huella-digital-de-tu-trabajo",
     "title": "biohack-modulo2",
     "section": "Guarda la huella digital de tu trabajo",
-    "text": "Guarda la huella digital de tu trabajo\n\n\nEs común que con nuevas versiones de paquetes, algunas funciones son dadas de baja.\nLos paquetes pueden también ser dados de bajo del CRAN.\nEsto puede producir que de aquí a un par de años un código tuyo simplemente no funcione.\nPara facilitar el trabajo detectivesco de encontrar las versiones exactas que usaste para tu análisis, al terminar un proyecto, guarda la información de la sesión de R.\n\n\n\n\nwriteLines(capture.output(sessionInfo()), \"sessionInfo.txt\")"
+    "text": "Guarda la huella digital de tu trabajo\n\n\nEs común que con nuevas versiones de paquetes, algunas funciones son dadas de baja.\nLos paquetes pueden también ser dados de baja del CRAN.\nEsto puede producir que de aquí a un par de años un código tuyo simplemente no funcione.\nPara facilitar el trabajo detectivesco de encontrar las versiones exactas que usaste para tu análisis, al terminar un proyecto, guarda la información de la sesión de R.\n\n\n\n\nwriteLines(capture.output(sessionInfo()), \"sessionInfo.txt\")"
   },
   {
     "objectID": "biohack-modulo2.html#conflictos",
@@ -193,7 +193,7 @@
     "href": "biohack-modulo2.html#r-es-un-lenguaje-extraño",
     "title": "biohack-modulo2",
     "section": "R es un lenguaje extraño",
-    "text": "R es un lenguaje extraño\n\n\n¿Recuerdas que algún momento mencioné que hay que evitar nombrar nuestros objetos de R con nombres de funciones de otros paquetes?\nHace poco conocí de este curioso ejemplo, si creamos una función del mismo nombre que mean, que haga cualquier otra cosa excepto calcular la media aritmética\n\n\n\n\nmean &lt;- function(vector){\n  return(print(vector))\n}\n\n\n\n\nEnmascara en tu sesión a la función base verdadera mean. Esto no sucede en otros lenguajes de programación."
+    "text": "R es un lenguaje extraño\n\n\n¿Recuerdas que algún momento mencioné que hay que evitar nombrar nuestros objetos de R con nombres de funciones de otros paquetes?\nSi creamos una función del mismo nombre que mean, que haga cualquier otra cosa excepto calcular la media aritmética\n\n\n\n\nmean &lt;- function(vector){\n  return(print(vector))\n}\n\n\n\n\nEnmascara en tu sesión a la función base mean verdadera. Esto no sucede en otros lenguajes de programación."
   },
   {
     "objectID": "biohack-modulo2.html#section-1",
